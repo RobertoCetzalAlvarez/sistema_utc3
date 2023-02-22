@@ -26,10 +26,11 @@
                         </div>
                     </div>
                     <p class="card-description text-center">{{ __('Inserte sus credenciales') }}</p>
-                    <div class="row mb-3">
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">
-                            <span class="input-group-text">
+                                    <span class="input-group-text">
                                         <i class="material-icons">email</i>
+                                        {{ __('Email') }}
                                     </span>
                             </label>
 
@@ -49,6 +50,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">
                                     <span class="input-group-text">
                                     <i class="material-icons">lock_outline</i>
+                                    {{ __('Contraseña') }}
                                     </span>
                             </label>
 
