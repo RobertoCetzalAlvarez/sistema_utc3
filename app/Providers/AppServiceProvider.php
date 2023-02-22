@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+<<<<<<< Updated upstream
 //use Nette\Utils\Paginator;
+=======
+>>>>>>> Stashed changes
 use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,7 +29,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+<<<<<<< Updated upstream
        // Paginator::useBootstrap();
+=======
+>>>>>>> Stashed changes
         Schema::defaultStringLength(191);
     }
 }
