@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-//use Nette\Utils\Paginator;
 use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,8 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-       // Paginator::useBootstrap();
+        // Paginator::useBoostrap();
         Schema::defaultStringLength(191);
     }
 }
