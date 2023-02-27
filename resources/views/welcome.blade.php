@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -19,8 +19,22 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-    </head>
-    <body class="antialiased">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="antialiased">
+<div id="carrusel-contenido">
+            <div id="carrusel-caja">
+                <div class="carrusel-elemento">
+                    <img class="imagenes" src="img/utc0.jpg" >
+                </div>
+                <div class="carrusel-elemento">   
+                    <img class="imagenes" src="img/utc1.png">
+                </div>
+                <div class="carrusel-elemento">   
+                    <img class="imagenes" src="img/utc2.jpg">                        
+                </div>
+            </div>
+        </div>
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -35,8 +49,8 @@
                     @endauth
                 </div>
             @endif
-
-
         </div>
-    </body>
+        @extends('layouts.master')
+    
+</body>
 </html>
