@@ -1,18 +1,18 @@
-@extends('layouts.main', ['class' => 'off-canvas-sidebar', 'activePage' => 'login', 'title' => __('Booking')])
+@extends('layouts.main', ['class' => 'off-canvas-sidebar', 'activePage' => 'login', 'title' => __('Universidad Tecnológica del Centro')])
 
 @section('content')
 <div class="container" style="height: auto;">
     <div class="row align-items-center">
-        <div class="col-md-9 ml-auto mr-auto mb-3 text-center">
-            <h3>{{ __('Log in here.') }}</h3>
+        <div class="col-md-9 ml-auto mr-auto mb-10 text-center">
+            <h3>{{ __('Iniciar Sesión') }}</h3>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+        <div class="col-lg-5 col-md-6 col-sm-8 ml-auto mr-auto">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <div class="card card-login card-hidden mb-3">
+                <div class="card card-login card-hidden mb-5">
                     <div class="card-header card-header-primary text-center">
-                        <h4 class="card-title"><strong>{{ __('LoginENTRADA') }}</strong></h4>
+                        <h4 class="card-title"><strong>{{ __('Acceder con:') }}</strong></h4>
                         <div class="social-line">
                             <a href="#" class="btn btn-just-icon btn-link btn-white">
                                 <i class="fa fa-facebook-square"></i>
@@ -25,12 +25,12 @@
                             </a>
                         </div>
                     </div>
-                    <p class="card-description text-center">{{ __('Inserte sus credenciales') }}</p>
+                    <p class="card-description text-center">{{ __('Ingresa tus datos') }}</p>
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">
                                     <span class="input-group-text">
                                         <i class="material-icons">email</i>
-                                        {{ __('Email') }}
+                                        {{ __('Correo') }}
                                     </span>
                             </label>
 
@@ -71,7 +71,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Recordarme') }}
                                     </label>
                                 </div>
                             </div>
@@ -80,12 +80,12 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('Acceder') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('¿Olvidaste tu contraseña?') }}
                                     </a>
                                 @endif
                             </div>
