@@ -15,12 +15,17 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 Route::get('plantilla', function () {
     return view('plantilla');
 });
 
+Route::get('grupo', function () {
+    return view('grupo');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::apiResource('apiGrupo','App\Http\Controllers\GrupoController');

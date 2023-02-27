@@ -1,6 +1,6 @@
 <!--inicia plantilla limpia-->
 @extends('layouts.master')
-@section('titulo','')
+@section('titulo','PRUEBA')
 @section('contenido')
 	
 	
