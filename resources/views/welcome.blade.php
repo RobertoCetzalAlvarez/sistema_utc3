@@ -25,13 +25,14 @@
 <div id="carrusel-contenido">
             <div id="carrusel-caja">
                 <div class="carrusel-elemento">
-                    <img class="imagenes" src="img/utc0.jpg" >
+                    
+                    <img class="imagenes" href="" src="img/utc0.jpg" >
                 </div>
                 <div class="carrusel-elemento">   
-                    <img class="imagenes" src="img/utc1.png">
+                    <img class="imagenes" href="" src="img/utc1.png">
                 </div>
                 <div class="carrusel-elemento">   
-                    <img class="imagenes" src="img/utc2.jpg">                        
+                    <img class="imagenes" href="" src="img/utc2.jpg">                        
                 </div>
             </div>
         </div>
@@ -49,8 +50,6 @@
                     @endauth
                 </div>
             @endif
-        </div>
-        @extends('layouts.master')
-    
+        </div>    
 </body>
 </html>
