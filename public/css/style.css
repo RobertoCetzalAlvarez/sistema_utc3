@@ -1,3 +1,5 @@
+
+
 h1 {
     text-align: center;
 }
@@ -11,12 +13,12 @@ h1 {
     -ms-transition: all 0.75s ease;
     -o-transition: all 0.75s ease;
     transition: all 0.75s ease;
-    height: 500px;
+    height: 300%;
     width: 300%;
 }
 #carrusel-contenido {
     margin: 0 auto;
-    overflow: hidden;
+    /*overflow: hidden;*/
     text-align: left;
 }
 /*tamaño del carrusel*/
@@ -98,7 +100,7 @@ h1 {
     }
 }
 body { /* Ubicación de la imagen */ 
-    background-image: url('img/cover.jpg');
+    /*background-image: url('img/UTC1.jpg');*/
     
     
     /* La imagen de fondo está centrada vertical y horizontalmente en todo momento */ 
@@ -117,4 +119,81 @@ body { /* Ubicación de la imagen */
     
     /* Establecer un color de fondo que se mostrará
     mientras se carga la imagen de fondo */ 
-    background-color: #464646; }
+    background-color: #ffffff; 
+    margin: 1;
+    padding: 1;
+    box-sizing: border-box;
+
+
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    font-family: 'Open Sans', sans-serif;
+}
+.iniciar{
+    display: flex;
+}
+.tabla-desktop {
+    width: 100%;
+    
+}
+
+.title{
+    text-align: center;
+    font-size: 40px;
+    color: #6a6a6a;
+    margin-top: 100px;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.container{
+    width: 100%;
+    max-width: 1200px;
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.container .card{
+    width: 330px;
+    height: 430px;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25s;
+}
+
+.container .card:hover{
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+}
+
+.container .card img{
+    width: 330px;
+    height: 220px;
+}
+
+
+.container .card h4{
+    font-weight: 600;
+}
+
+.container .card p{
+    padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.container .card a {
+    font-weight: 500;
+    text-decoration: none;
+    color: #3498db;
+}
