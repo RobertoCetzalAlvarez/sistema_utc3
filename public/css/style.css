@@ -18,7 +18,7 @@ h1 {
 }
 #carrusel-contenido {
     margin: 0 auto;
-    /*overflow: hidden;*/
+    overflow: hidden;
     text-align: left;
 }
 /*tamaño del carrusel*/
