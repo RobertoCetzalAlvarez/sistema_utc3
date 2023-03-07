@@ -29,7 +29,7 @@
            <img src="img/coordinador.png">
            <h4>coordinador</h4>
            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, excepturi unde?</p>
-           <a href="/login">acceder</a>
+           <a href="/coordinador">acceder</a>
        </div>
        
        <div class="card1">

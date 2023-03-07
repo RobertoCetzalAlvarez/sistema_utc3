@@ -28,4 +28,5 @@ Route::get('grupo', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/coordinador', [App\Http\Controllers\CoordinadorController::class, 'index'])->name('coordinador');
 Route::apiResource('apiGrupo','App\Http\Controllers\GrupoController');
