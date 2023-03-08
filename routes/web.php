@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('plantilla', function () {
     return view('plantilla');
 });
@@ -24,9 +22,24 @@ Route::get('plantilla', function () {
 Route::get('grupo', function () {
     return view('grupo');
 });
+//RUTAS PARAMETRIZADAS
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/coordinador', [App\Http\Controllers\CoordinadorController::class, 'index'])->name('coordinador');
+//APIS
 Route::apiResource('apiGrupo','App\Http\Controllers\GrupoController');
+
+
+
+//INICIO DE VISTAS
+Auth::routes();
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/alumno', [App\Http\Controllers\AlumnoController::class, 'index'])->name('alumno');
+Route::get('/coordinador', [App\Http\Controllers\CoordinadorController::class, 'index'])->name('coordinador');
+Route::get('/finanzas', [App\Http\Controllers\FinanzasController::class, 'index'])->name('finanzas');
+Route::get('/profesor', [App\Http\Controllers\ProfesorController::class, 'index'])->name('profesor');
+Route::get('/serv-esc', [App\Http\Controllers\ServiciosEscolaresController::class, 'index'])->name('serv-esc');
+Route::get('/tutor', [App\Http\Controllers\TutorController::class, 'index'])->name('tutor');
+
