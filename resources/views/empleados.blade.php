@@ -112,6 +112,7 @@
 @push('scripts')
 	<script type="text/javascript" src="js/vue-resource.js"></script>
 	<script type="text/javascript" src="js/apis/apiEmpleado.js"></script>
+	<script src="js/vue.js"></script>
 @endpush
 
 <input type="hidden" name="route" value="{{url('/')}}">

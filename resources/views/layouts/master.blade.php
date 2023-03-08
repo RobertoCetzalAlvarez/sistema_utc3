@@ -12,8 +12,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
@@ -52,7 +53,6 @@
     </form>
     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                    <ul>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -84,7 +84,7 @@
                                 </div>
                             </li>
                         @endguest
-                    </ul>
+                    
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -708,6 +708,8 @@
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/vue-resource.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="dist/js/demo.js"></script>

@@ -1,7 +1,8 @@
+function init() {
 var ruta = document.querySelector("[name=route]").value;
 
-var apiEmpleado=ruta + '/apiEmpleado';
-//var apiEmpleado='http://localhost/sistema/public/apiEmpleado'
+var apiEmpleado = ruta + '/apiEmpleado';
+//var apiEmpleado='http://127.0.0.1:8000/apiEmpleado'
 
 new Vue({
 
@@ -16,6 +17,7 @@ new Vue({
 
 	data:{
 		empleados:[],
+		num_empleado:'',
 		nombre:'',
 		ap_p:'',
 		ap_m:'',
@@ -169,8 +171,8 @@ new Vue({
 		// },
 
 		filtroEmpleados:function(){
-			return this.empleados.filter((empleados)=>{
-				return empleados.nombre.toLowerCase().match(this.buscar.toLowerCase().trim()) 
+			return this.empleados.filter((num_empleado)=>{
+				return num_empleado.nombre.toLowerCase().match(this.buscar.toLowerCase().trim()) 
 
 			});
 		}
@@ -180,3 +182,4 @@ new Vue({
 
 
 });
+} window.onload = init;
