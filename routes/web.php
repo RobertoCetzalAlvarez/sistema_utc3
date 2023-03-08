@@ -25,6 +25,10 @@ Route::get('grupo', function () {
     return view('grupo');
 });
 
+Route::get('/empleados', function () {
+    return view('empleados');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
