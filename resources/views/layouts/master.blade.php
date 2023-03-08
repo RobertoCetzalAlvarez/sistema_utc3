@@ -673,7 +673,7 @@
 
     <!-- Main content -->
     <section class="content">
-    @yield('contenido')
+      @yield('contenido')
     </section>
     <!-- /.content -->
  

@@ -3,12 +3,11 @@
 @section('titulo','tutor')
 @section('contenido')
 	
-	
+
 @endsection
 
 @push('scripts')
-	
-@endpush
 
+@endpush
 <input type="hidden" name="route" value="{{url('/')}}">
 <!--termina plantilla limplia-->
