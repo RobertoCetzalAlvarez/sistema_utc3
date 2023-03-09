@@ -3,6 +3,7 @@
 @section('titulo','coordinador')
 @section('contenido')
 <div>
+  <!--MINI CARDS-->
    <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
@@ -11,7 +12,7 @@
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">ALUMNOS1</span>
+              <a href="/empleados">añadir maestro</a>
                 <span class="info-box-number">
                   10
                   <small>%</small>
