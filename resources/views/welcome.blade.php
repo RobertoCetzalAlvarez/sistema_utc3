@@ -85,7 +85,7 @@
             <img src="img/servicios_escolares.png">
             <h4>Servicios Escolares</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, excepturi unde?</p>
-            <a href="#">acceder</a>
+            <a href="/login">acceder</a>
         </div>
         
         <div class="card">

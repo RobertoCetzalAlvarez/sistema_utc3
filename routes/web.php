@@ -29,8 +29,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('empleados', function () {
-    return view('empleados');
+    return view('aniadirempleados');
 });
+Route::get('alumnoo', function () {
+    return view('aniadir_alumno');
+});
+//vistas con permisos
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/alumno', [App\Http\Controllers\AlumnoController::class, 'index'])->name('alumno');
 Route::get('/coordinador', [App\Http\Controllers\CoordinadorController::class, 'index'])->name('coordinador');

@@ -12,7 +12,7 @@
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
               <div class="info-box-content">
-              <a href="/#">Añadir alumno</a>
+              <a href="/alumnoo">Añadir alumno</a>
                 <span class="info-box-number">
                   10
                   <small>%</small>

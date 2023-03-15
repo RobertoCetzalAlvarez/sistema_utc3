@@ -12,7 +12,7 @@
  		
  	</div>
  </div>
-
+<!--tabla aniadir empleados-->
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card card-warning"> 
@@ -70,7 +70,7 @@
 			</div>  
 			<!-- FIN DE COL-MD-12 -->
 		</div>
-
+<!--termina tabla
 <!-- INICIA VENTANA MODAL -->
 <div class="modal fade" id="modalEmpleados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
