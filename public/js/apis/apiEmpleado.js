@@ -38,6 +38,7 @@ new Vue({
 	},
 
 	methods:{
+		//inicia metodos obtener datos
 		obtenerEmpleados:function(){
 			
 			this.$http.get(apiEmpleado).then(function(json){
@@ -48,7 +49,13 @@ new Vue({
 			});
 		},
 
-
+		//termina metodo obtener modal
+		//EMPIEZA METODO CERRAR MODAL
+		modalEmpleados:function(){
+			$('#modalEmpleados').modal('hide');
+		},
+		//TERMINA METODOS CERRAR MODAL
+		//inicia metodos mostrar 
 		mostrarModal:function(){
 			this.agregando=true;
 			this.nombre='';
@@ -57,7 +64,8 @@ new Vue({
 			
 			$('#modalEmpleados').modal('show');
 		},
-
+		//termina metodos mostrar
+		//empieza metodo guardar
 		guardarEmpleado:function(){
 			
 			// Se construye el json para enviar al controlador
@@ -89,7 +97,8 @@ new Vue({
 
 
 		},
-
+		//termina metodos guardar
+		//empieza metodos eliminar
 		eliminarEmpleado:function(id){
 			var confir= confirm('Esta seguro de eliminar al empleado?');
 
@@ -102,8 +111,8 @@ new Vue({
 				});
 			}
 		},
-
-
+		//termina metodos eliminar 
+		//empieza metodos editar
 		editandoEmpleado:function(id){
 			this.agregando=false;
 			this.num_empleado=id;
@@ -121,7 +130,8 @@ new Vue({
 			$('#modalEmpleados').modal('show');
 
 		},
-
+		//TERMINA METODOS EDITAR
+		//EMPIEZA METODOS ACTUALIZAR
 		actualizarEmpleado:function(){
 
 			var jsonEmpleados = {nombre:this.nombre,
@@ -141,21 +151,8 @@ new Vue({
 			$('#modalEmpleados').modal('hide');
 		},
 
-		// obtenerEmpleados:function(){
-		// 	this.$http.get(apiEspecie).then(function(json){
-		// 		this.especies=json.data;
-		// 	})
-		// },
+		// TERMINA METODOS ACTUALIZAR
 
-		// obtenerRazas(e){
-		// 		var id_especie=e.target.value;
-		// 		// console.log(id_especie);
-
-		// 		this.$http.get(ruta + '/getRazas/' + id_especie ).then(function(j){
-		// 			this.razas=j.data;
-		// 		});
-
-		// }
 
 	},
 	// FIN DE METHODS

@@ -70,7 +70,7 @@
 			</div>  
 			<!-- FIN DE COL-MD-12 -->
 		</div>
-<!--termina tabla
+<!--termina tabla-->
 <!-- INICIA VENTANA MODAL -->
 <div class="modal fade" id="modalEmpleados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -78,7 +78,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==true">Agregar Empleado</h5>
         <h5 class="modal-title" id="exampleModalLabel" v-if="agregando==false">Editar Empleado</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" @click="modalEmpleados()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -93,7 +93,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" @click="modalEmpleados()">Cerrar</button>
         <button type="button" class="btn btn-primary" @click="guardarEmpleado" v-if="agregando==true">Guardar</button>
         <button type="button" class="btn btn-primary" @click="actualizarEmpleado()" v-if="agregando==false">Guardar</button>
       </div>
