@@ -45,3 +45,4 @@ Route::get('/tutor', [App\Http\Controllers\TutorController::class, 'index'])->na
 
 //Apis
 Route::apiResource('apiEmpleado','App\Http\Controllers\EmpleadosController');
+Route::apiResource('apiGrupo','App\Http\Controllers\GrupoController');

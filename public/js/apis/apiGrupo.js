@@ -1,3 +1,4 @@
+function init() {
 var ruta = document.querySelector("[name=route]").value;
 
 var apiGrupo=ruta + '/apiGrupo';
@@ -17,6 +18,9 @@ new Vue({
 	data:{
 	grupos:[],
 	buscar:'',
+	id_grupo:'',
+	grupo:'',
+	agregando:'',
 	},
 	// AL CREARSE LA PAGINA
 	created:function(){
@@ -34,15 +38,24 @@ new Vue({
 				console.log(json);
 			});
 		}, 
-
+		//fin de metodos obtener
+		//inicio metodos mostrar modal
 		mostrarModal:function(){
 			this.agregando=true;
+			this.id_grupo='';
 			this.grupo='';
 			
 			$('#modalGrupo').modal('show');
 	
 		},
+		//fin de metodos mostrar modal
+		//inicio metodos cerrar modal
+		modalGrupo:function(){
+			$('#modalGrupo').modal('hide');
+		},
 
+		//fin metodos cerrar modal
+		//Inicio metodos guardar 
 		guardarGrupo:function(){
 
 			var grupo={ grupo:this.grupo,
@@ -60,7 +73,8 @@ new Vue({
 
 				console.log(grupo);
 		},
-
+		//fin de metodos guardar
+		//inicio de metodos eliminar
 		eliminarGrupo:function(id){
 			var confir=confirm('Está seguro de eliminar el grupo?');
 
@@ -73,11 +87,12 @@ new Vue({
 				});
 			}
 		},
-
+		//termina metodos eliminar
+		//empieza metodos editar
 		editandoGrupo:function(id){
 			this.agregando=false;
 			this.id_grupo=id;
-
+			console.log(this.id_grupo);
 			this.$http.get(apiGrupo + '/' + id).then(function(json){
 				this.grupo=json.data.grupo;
 			});
@@ -85,7 +100,8 @@ new Vue({
 			$('#modalGrupo').modal('show');
 
 		},
-
+		//termina metodos editar
+		//empieza metodos actualizar
 		actualizarGrupo:function(){
 			
 			var jsonGrupo = {
@@ -98,7 +114,7 @@ new Vue({
 			})
 			$('#modalGrupo').modal('hide');
 		},
-
+		//fin de metodos actualizar
 		
 	},
 	// FIN DE METHODS
@@ -107,7 +123,7 @@ new Vue({
 	// INICIO COMPUTED
 	computed:{
         filtroGrupo:function(){
-            return this.grupos.filter((id)=>{
+            return this.grupos.filter((id_grupo)=>{
                 return id_grupo.grupo.toLowerCase().match(this.buscar.toLowerCase().trim())
             });
 
@@ -118,3 +134,4 @@ new Vue({
 	// FIN DE COMPUTED
 
 });
+} window.onload = init;
