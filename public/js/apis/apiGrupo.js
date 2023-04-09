@@ -40,8 +40,11 @@ new Vue({
 		}, 
 		//fin de metodos obtener
 		//inicio metodos mostrar modal
+		MostrarModalGrupo:function(){
+			$('#MostrarModalGrupo').modal('show');
+		},
 		mostrarModalGrupo:function(){
-			
+
 			$('#modalGrupo1').modal('show');
 		},
 		mostrarModal:function(){
@@ -57,7 +60,9 @@ new Vue({
 		modalGrupo:function(){
 			$('#modalGrupo').modal('hide');
 		},
-
+		CerrarModalGrupo:function(){
+			$('#MostrarModalGrupo').modal('hide');
+		},
 		//fin metodos cerrar modal
 		//Inicio metodos guardar 
 		guardarGrupo:function(){
@@ -96,11 +101,14 @@ new Vue({
 		editandoGrupo:function(id){
 			this.agregando=false;
 			this.id_grupo=id;
-			console.log(this.id_grupo);
+			//console.log(this.id_grupo);
 			this.$http.get(apiGrupo + '/' + id).then(function(json){
 				this.grupo=json.data.grupo;
 			});
 
+			//$('#modalGrupo').modal('show');
+
+			
 			$('#modalGrupo').modal('show');
 
 		},
