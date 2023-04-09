@@ -40,6 +40,10 @@ new Vue({
 		}, 
 		//fin de metodos obtener
 		//inicio metodos mostrar modal
+		mostrarModalGrupo:function(){
+			
+			$('#modalGrupo1').modal('show');
+		},
 		mostrarModal:function(){
 			this.agregando=true;
 			this.id_grupo='';
