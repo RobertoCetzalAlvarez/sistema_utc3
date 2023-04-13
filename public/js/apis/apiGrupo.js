@@ -2,8 +2,8 @@ function init() {
 var ruta = document.querySelector("[name=route]").value;
 
 var apiGrupo=ruta + '/apiGrupo';
-
-
+var apiAlumno =ruta + '/apiAlumno';
+var apiCarrera=ruta + '/apiCarrera';
  
 new Vue({
 
@@ -16,8 +16,17 @@ new Vue({
 	el:"#grupos",
 
 	data:{
+		//inicio de arreglos 
 	grupos:[],
+	Alumnos:[],
+	Carreras:[],
+		//fin de arreglos
+		//inicio buscar para los filtros
 	buscar:'',
+	buscar2:'',
+	buscar3:'',
+		//fin buscar para los filtros
+
 	id_grupo:'',
 	grupo:'',
 	agregando:'',
@@ -25,6 +34,8 @@ new Vue({
 	// AL CREARSE LA PAGINA
 	created:function(){
 		this.obtenerGrupo();
+		this.obtenerAlumno();
+		this.obtenerCarrera();
     },
 	methods:{
 
@@ -38,8 +49,28 @@ new Vue({
 				console.log(json);
 			});
 		}, 
+		obtenerAlumno:function(){
+			this.$http.get(apiAlumno).then(function(json){
+				this.Alumnos=json.data;
+				console.log(json.data);
+			}).catch(function(json){
+				console.log(json.data);
+			});
+		},
+		obtenerCarrera:function(){
+			this.$http.get(apiCarrera).then(function(json){
+				this.Carreras=json.data;
+				console.log(json.data);
+			}).catch(function(json){
+				console.log(json.data);
+			});
+		},
 		//fin de metodos obtener
 		//inicio metodos mostrar modal
+		mostrareditandoAlumno:function(){
+			this.agregando=false;
+			$('#modalAlumno').modal('show');
+		},
 		MostrarModalGrupo:function(){
 			$('#MostrarModalGrupo').modal('show');
 		},
@@ -55,6 +86,13 @@ new Vue({
 			$('#modalGrupo').modal('show');
 	
 		},
+		mostrarModalAlumno:function(){
+			this.agregando=true;
+			$('#modalAlumno').modal('show');
+		},
+		MostrarModalCarrera:function(){
+			$('#MostrarModalCarrera').modal('show');
+		},
 		//fin de metodos mostrar modal
 		//inicio metodos cerrar modal
 		modalGrupo:function(){
@@ -62,6 +100,12 @@ new Vue({
 		},
 		CerrarModalGrupo:function(){
 			$('#MostrarModalGrupo').modal('hide');
+		},
+		cerrarModalAlumno:function(){
+			$('#modalAlumno').modal('hide');
+		},
+		cerrarModalCarrera:function(){
+			$('#MostrarModalCarrera').modal('hide');
 		},
 		//fin metodos cerrar modal
 		//Inicio metodos guardar 
@@ -134,12 +178,19 @@ new Vue({
 
 	// INICIO COMPUTED
 	computed:{
+		//inicio computed filtros
         filtroGrupo:function(){
             return this.grupos.filter((id_grupo)=>{
                 return id_grupo.grupo.toLowerCase().match(this.buscar.toLowerCase().trim())
             });
 
         },
+		filtroAlumno:function(){
+			return this.Alumnos.filter((id_matricula)=>{
+				return id_matricula.nombre.toLowerCase().match(this.buscar2.toLowerCase().trim())
+			});
+		},
+		//fin computed filtros
  
 	
 	}
