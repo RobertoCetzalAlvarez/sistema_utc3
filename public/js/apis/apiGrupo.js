@@ -4,6 +4,7 @@ var ruta = document.querySelector("[name=route]").value;
 var apiGrupo=ruta + '/apiGrupo';
 var apiAlumno =ruta + '/apiAlumno';
 var apiCarrera=ruta + '/apiCarrera';
+
  
 new Vue({
 
@@ -26,9 +27,17 @@ new Vue({
 	buscar2:'',
 	buscar3:'',
 		//fin buscar para los filtros
-
+		//inicio llaves primarias
 	id_grupo:'',
+	id_carrera:'',
+	//fin de llaves primarias
+	//inicia variable inicializada para la tabla grupos
 	grupo:'',
+	//fin de variable inicializada para la tabla grupos
+	//inicio variable inicializada para tabla carreras
+	id_car:'',
+	carrera:'',
+	//fin variable inicializada para tabla carreras
 	agregando:'',
 	},
 	// AL CREARSE LA PAGINA
@@ -78,7 +87,7 @@ new Vue({
 
 			$('#modalGrupo1').modal('show');
 		},
-		mostrarModal:function(){
+		mostrarModal:function(){//modal para añadir grupo
 			this.agregando=true;
 			this.id_grupo='';
 			this.grupo='';
@@ -91,7 +100,17 @@ new Vue({
 			$('#modalAlumno').modal('show');
 		},
 		MostrarModalCarrera:function(){
+			this.agregando=true;
 			$('#MostrarModalCarrera').modal('show');
+		},
+		//muestra el modal para agregar carrera
+		mostrarModalCarrera:function(){
+			this.agregando=true;/*se limpia
+			las variables para que aparezcan
+			vacias*/
+			this.id_car='';
+			this.carrera='';
+			$('#mostrarModalCarrera').modal('show');
 		},
 		//fin de metodos mostrar modal
 		//inicio metodos cerrar modal
@@ -105,6 +124,12 @@ new Vue({
 			$('#modalAlumno').modal('hide');
 		},
 		cerrarModalCarrera:function(){
+			$('#MostrarModalCarrera').modal('hide');
+		},
+		cerrarModalCarrera:function(){
+			$('#mostrarModalCarrera').modal('hide');
+		},
+		CerrarModalCarrera:function(){
 			$('#MostrarModalCarrera').modal('hide');
 		},
 		//fin metodos cerrar modal
@@ -126,7 +151,126 @@ new Vue({
 
 				console.log(grupo);
 		},
+		guardarCarrera:function(){
+			var carrera={
+				id:this.id_car,
+				carrera:this.carrera,
+			};
+			this.$http.post(apiCarrera,carrera).then(function(j){
+				this.obtenerCarrera();
+				this.id_car='';
+				this.carrera='';
+
+				}).catch(function(j){
+					console.log(j);
+				});
+
+				$('#mostrarModalCarrera').modal('hide');
+
+				console.log(carrera);
+		},
 		//fin de metodos guardar
+		//empieza metodos editar
+		editandoGrupo:function(id){
+			this.agregando=false;
+			/*se inicializa el id para 
+			posterior mente se pueda actualizar en el metodo actualizar*/
+			this.id_grupo=id;
+			
+			//console.log(this.id_grupo);
+			this.$http.get(apiGrupo + '/' + id).then(function(json){
+				this.grupo=json.data.grupo;
+			});
+
+			//$('#modalGrupo').modal('show');
+
+			
+			$('#modalGrupo').modal('show');
+
+		},
+		editandoCarrera:function(id){
+			this.agregando=false;
+			/*se inicializa el id para 
+			posterior mente se pueda actualizar en el metodo actualizar*/
+			this.id_carrera=id;
+			//console.log(this.id_carrera);
+			this.$http.get(apiCarrera + '/' + id).then(function(json){
+				//se inicializan las variables para que aparescan en el input
+				this.id_car=json.data.id;
+				this.carrera=json.data.carrera;
+				//console.log(this.carrera);
+			});
+
+			$('#mostrarModalCarrera').modal('show');
+		},
+		//termina metodos editar
+		//empieza metodos actualizar
+		actualizarGrupo:function(){
+			
+			var jsonGrupo = {
+				grupo:this.grupo
+			};
+			this.$http.patch(apiGrupo + '/' + this.id_grupo,jsonGrupo).then(function(json){
+				this.obtenerGrupo();
+				this.grupo=json.data.grupo;
+			})
+			$('#modalGrupo').modal('hide');
+		},
+		actualizarCarrera:function(){
+			var jsonCarrera={
+				id:this.id_car,
+				carrera:this.carrera
+			};
+			//rutina de busqueda para evitar llaves primarias repetidas
+			var encontrado=0;
+			for (let i = 0; i < this.Carreras.length; i++) {
+				if (this.id_car==this.Carreras[i].id){
+
+					encontrado=1;
+					/*swal('la llave primaria ya se encuentra en uso');
+					swal("la llave primaria ya se encuentra en uso");
+					//alert("la llave primaria ya se encuentra en uso");*/
+					if(encontrado=1){
+						swal({
+							title: 'La clave de carrera ya esta en uso',
+							//text: '¡No podrás deshacer esta acción!',
+							icon: 'warning',
+							showCancelButton: true,
+							cancelButtonText: 'Cancelar'
+						  })
+						  .then((willDelete) => {
+							if (willDelete) {
+							  swal("No se realizo ningun cambio!", {
+								icon: "success",
+							  });
+							} else {
+							  swal("Your imaginary file is safe!");
+							  
+							}
+							
+						  });
+					}
+					
+					
+				}else{
+					if(encontrado==0){
+						this.$http.patch(apiCarrera + '/' + this.id_carrera,jsonCarrera).then(function(json){
+							this.obtenerCarrera();
+							this.id_car=json.data.id;
+							this.carrera=json.data.carrera;
+						})
+						swal("Cambios aplicados", "", "Exitosamente");
+	
+						$('#mostrarModalCarrera').modal('hide');
+					}
+					
+
+				}
+				
+			  }
+
+		},
+		//fin de metodos actualizar
 		//inicio de metodos eliminar
 		eliminarGrupo:function(id){
 			var confir=confirm('Está seguro de eliminar el grupo?');
@@ -140,37 +284,17 @@ new Vue({
 				});
 			}
 		},
+		eliminarCarrera:function(id){
+			var confir=confirm('Esta seguro de eliminar la Carrera');
+			if (confir){
+				this.$http.delete(apiCarrera + '/' + id).then(function(json){
+					this.obtenerCarrera();
+				}).catch(function(json){
+					console.log(json);
+				});
+			}
+		},
 		//termina metodos eliminar
-		//empieza metodos editar
-		editandoGrupo:function(id){
-			this.agregando=false;
-			this.id_grupo=id;
-			//console.log(this.id_grupo);
-			this.$http.get(apiGrupo + '/' + id).then(function(json){
-				this.grupo=json.data.grupo;
-			});
-
-			//$('#modalGrupo').modal('show');
-
-			
-			$('#modalGrupo').modal('show');
-
-		},
-		//termina metodos editar
-		//empieza metodos actualizar
-		actualizarGrupo:function(){
-			
-			var jsonGrupo = {
-				grupo:this.grupo
-			};
-
-			this.$http.patch(apiGrupo + '/' + this.id_grupo,jsonGrupo).then(function(json){
-				this.obtenerGrupo();
-				this.grupo=json.data.grupo;
-			})
-			$('#modalGrupo').modal('hide');
-		},
-		//fin de metodos actualizar
 		
 	},
 	// FIN DE METHODS
@@ -191,9 +315,13 @@ new Vue({
 			});
 		},
 		//fin computed filtros
- 
+		filtroCarrera:function(){
+			return this.Carreras.filter((id)=>{
+				return id.carrera.toLowerCase().match(this.buscar3.toLowerCase().trim())
+			});
+		},
 	
-	}
+	},
 	// FIN DE COMPUTED
 
 });
