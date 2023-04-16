@@ -9,6 +9,7 @@
 					<div class="card card-warning"> 
 						<div class="card-header">
 							<h3>ALUMNOS</h3>
+              <h1>@{{obtenerDosUltimosNumerosDelAnio}}</h1>
 								<li class="nav-item d-none d-lg-flex">
 									
 									<span class="btn btn-primary" @click="mostrarModalAlumno()">+ Crear nuevo</span>
@@ -50,7 +51,7 @@
                                             <td>@{{alumno.localidad}}</td>
                                             <td>@{{alumno.calle_int}}</td>
                                             <td>@{{alumno.calle_ex}}</td>
-                                            <td>@{{alumno.id_carrera}}</td>
+                                            <td>@{{alumno.carreras.carrera}}</td>
                                             <td>@{{alumno.id_salon}}</td>
 
                                             <!--<td><img v-bind:src=producto.foto width="50" height="60"></td>-->

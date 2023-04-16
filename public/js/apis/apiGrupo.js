@@ -253,7 +253,7 @@ new Vue({
 					
 					
 				}else{
-					if(encontrado==0){
+					if(encontrado == 0){
 						this.$http.patch(apiCarrera + '/' + this.id_carrera,jsonCarrera).then(function(json){
 							this.obtenerCarrera();
 							this.id_car=json.data.id;
@@ -302,6 +302,10 @@ new Vue({
 
 	// INICIO COMPUTED
 	computed:{
+		obtenerDosUltimosNumerosDelAnio() {
+			const anio = new Date().getFullYear();
+			return anio.toString().slice(-2);
+		},
 		//inicio computed filtros
         filtroGrupo:function(){
             return this.grupos.filter((id_grupo)=>{
