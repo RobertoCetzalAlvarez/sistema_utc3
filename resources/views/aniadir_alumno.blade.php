@@ -9,7 +9,8 @@
 					<div class="card card-warning"> 
 						<div class="card-header">
 							<h3>ALUMNOS</h3>
-              <h1>@{{obtenerDosUltimosNumerosDelAnio}}</h1>
+              <h1>@{{matricula1}}</h1>
+              <!--<h1>@{{obtenerSiguienteNumero}}</h1>-->
 								<li class="nav-item d-none d-lg-flex">
 									
 									<span class="btn btn-primary" @click="mostrarModalAlumno()">+ Crear nuevo</span>
@@ -101,7 +102,8 @@
       <div class="modal-body">
         <form>
         	<!--AQUI VA EL CONTENIDO-->
-
+          
+          <input type="text" class="form-control" placeholder="matricula" v-model="matricula">
         	
         	<!--AQUI TERMINA EL CONTENIDO-->
         </form>

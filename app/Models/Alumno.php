@@ -29,6 +29,7 @@ class Alumno extends Model
         'calle_ex',
         'id_carrera',
         'id_salon',
+        'numero',
     ];
     public function carreras(){
         return $this->belongsTo(Carrera::class, 'id_carrera', 'id');

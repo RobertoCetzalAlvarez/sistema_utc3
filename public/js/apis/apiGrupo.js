@@ -35,10 +35,29 @@ new Vue({
 	grupo:'',
 	//fin de variable inicializada para la tabla grupos
 	//inicio variable inicializada para tabla carreras
-	id_car:'',
+	id_car:'21',
 	carrera:'',
 	//fin variable inicializada para tabla carreras
 	agregando:'',
+	//inicio descompocicion de la matricula
+	ma:'',
+	tri:'',
+	cula:'',
+	matricula:'',
+	//fin descompocicion de la matricula
+	//datos alumno
+	nombre:'',
+	ap_p:'',
+	ap_m:'',
+	curp:'',
+	nns:'',
+	localidad:'',
+	calle_int:'',
+	calle_ex:'',
+	//id_carrera:'',
+	id_salon:'',
+	//fin datos alumno
+	numero:0,
 	},
 	// AL CREARSE LA PAGINA
 	created:function(){
@@ -134,6 +153,20 @@ new Vue({
 		},
 		//fin metodos cerrar modal
 		//Inicio metodos guardar 
+		guardarAlumno:function(){
+			var Alumno={
+				nombre:this.nombre,
+				ap_p:this.ap_p,
+				ap_m:this.ap_m,
+				curp:this.curp,
+				nns:this.nns,
+				localidad:this.localidad,
+				calle_int:this.calle_int,
+				calle_ex:this.calle_ex,
+				id_carrera:this.id_car,
+				id_salon:this.id_salon,
+			};
+		},
 		guardarGrupo:function(){
 
 			var grupo={ grupo:this.grupo,
@@ -302,9 +335,35 @@ new Vue({
 
 	// INICIO COMPUTED
 	computed:{
+		obtenerSiguienteNumero() {
+			/* var total=0;
+			for (let i = 0; i < this.Alumnos.length; i++) {
+				total= this.Alumnos[i].numero;
+				console.log(total);
+			}
+			return total;*/
+			const ultimoObjeto = this.Alumnos[this.Alumnos.length - 1];
+			const ultimoNumero = ultimoObjeto ? ultimoObjeto.numero : '0000';
+			const siguienteNumero = parseInt(ultimoNumero) + 1;
+			const numeroCompleto = siguienteNumero.toString().padStart(4, '0');
+			return numeroCompleto;
+		  },
+		  
 		obtenerDosUltimosNumerosDelAnio() {
 			const anio = new Date().getFullYear();
-			return anio.toString().slice(-2);
+			/*se inicializa una variable 
+			para que se pueda usar posteriormente*/
+			this.ma=anio.toString().slice(-2);
+			return this.ma;
+		},
+		matricula1(){
+			var matricula ='';
+			//ini=this.ma+this.tri+this.cula;
+			this.ma=this.obtenerDosUltimosNumerosDelAnio;
+			this.tri=this.id_car;
+			this.cula=this.obtenerSiguienteNumero;
+			this.matricula=this.ma + this.tri + this.cula;
+			return this.matricula;
 		},
 		//inicio computed filtros
         filtroGrupo:function(){
