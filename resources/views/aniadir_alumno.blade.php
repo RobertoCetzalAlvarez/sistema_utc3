@@ -9,7 +9,7 @@
 					<div class="card card-warning"> 
 						<div class="card-header">
 							<h3>ALUMNOS</h3>
-              <h1>@{{matricula1}}</h1>
+              <!--<h1>@{{matricula1}}</h1>-->
               <!--<h1>@{{obtenerSiguienteNumero}}</h1>-->
 								<li class="nav-item d-none d-lg-flex">
 									
@@ -36,7 +36,7 @@
                                         <th style="background: #FFFF00">C.INTERIOR</th>
                                         <th style="background: #FFFF00">C.EXTERIOR</th>
                                         <th style="background: #FFFF00">CARRERA</th>
-                                        <th style="background: #FFFF00">SALON</th>
+                                        <th style="background: #FFFF00" hidden="">SALON</th>
                                         <th style="background: #FFFF00">ACCIONES</th>
 
                                     </thead>
@@ -53,7 +53,7 @@
                                             <td>@{{alumno.calle_int}}</td>
                                             <td>@{{alumno.calle_ex}}</td>
                                             <td>@{{alumno.carreras.carrera}}</td>
-                                            <td>@{{alumno.id_salon}}</td>
+                                            <!--<td>@{{alumno.id_salon}}</td>-->
 
                                             <!--<td><img v-bind:src=producto.foto width="50" height="60"></td>-->
                                             <!--<td ><img href="prods/@{{producto.foto}}" alt=""></td>-->
@@ -63,11 +63,11 @@
                                                 <!--.prevent elimina el el comportamiento
                                                 predeterminado de la acción de clic
                                                 y se ejecutará el método tal cual-->
-                                                <button class="btn btn-sm" @click.prevent="mostrareditandoAlumno(alumno.id_matricula)">
+                                                <button class="btn btn-sm" @click.prevent="editandoAlumno(alumno.id_matricula)">
                                                     <i class="fas fa-pen"></i>
                                                 </button>
 
-                                                <button class="btn btn-sm" @click.prevent="eliminarGrupo(grupo.id_grupo)">
+                                                <button class="btn btn-sm" @click.prevent="eliminarAlumno(alumno.id_matricula)">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </td>
@@ -103,15 +103,30 @@
         <form>
         	<!--AQUI VA EL CONTENIDO-->
           
-          <input type="text" class="form-control" placeholder="matricula" v-model="matricula">
+          <input type="text" class="form-control" placeholder="Matricula" v-model="matricula" readonly>
+          <input type="text" class="form-control" placeholder="Nombre" v-model="nombre">
+          <input type="text" class="form-control" placeholder="Apellido Paterno" v-model="ap_p">
+          <input type="text" class="form-control" placeholder="Apellido Materno" v-model="ap_m">
+          <input type="text" class="form-control" placeholder="Curp" v-model="curp">
+          <input type="text" class="form-control" placeholder="Numero de Seguridad Social" v-model="nns">
+          <input type="text" class="form-control" placeholder="Localidad" v-model="localidad">
+          <input type="text" class="form-control" placeholder="Calle interior" v-model="calle_int">
+          <input type="text" class="form-control" placeholder="Calle Exterior" v-model="calle_ex">
+          <!--<input type="text" class="form-control" placeholder="Salon" v-model="id_salon">-->
+          <!--<input type="text" class="form-control" placeholder="Carrera" v-model="id_car">-->
+          <h6>Elija una carrera</h6>
+          <select name="carrera" v-model="id_car" class="form-control" aria-placeholder="Elije la carrera">
+          <option v-for="carrera in filtroCarrera" v-bind:value="carrera.id"><td>@{{carrera.carrera}}</td></option>
+          </select>
+      
         	
         	<!--AQUI TERMINA EL CONTENIDO-->
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" @click="cerrarModalAlumno()">Cerrar</button>
-        <button type="button" class="btn btn-primary" @click="vender()" v-if="agregando==true">Guardar1</button>
-        <button type="button" class="btn btn-primary" @click="vender()" v-if="agregando==false">Guardar2</button>
+        <button type="button" class="btn btn-primary" @click="guardarAlumno()" v-if="agregando==true">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="actualizarAlumno()" v-if="agregando==false">Guardar</button>
       </div>
     </div>
   </div>

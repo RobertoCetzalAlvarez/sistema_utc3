@@ -15,6 +15,7 @@ class AlumnoApiController extends Controller
     {
         //
         $alumnos=new Alumno();
+        $alumnos->id_matricula=$request->get('id_matricula');
         $alumnos->nombre=$request->get('nombre');
         $alumnos->ap_p=$request->get('ap_p');
         $alumnos->ap_m=$request->get('ap_m');
@@ -25,6 +26,7 @@ class AlumnoApiController extends Controller
         $alumnos->calle_ex=$request->get('calle_ex');
         $alumnos->id_carrera=$request->get('id_carrera');
         $alumnos->id_salon=$request->get('id_salon');
+        $alumnos->numero=$request->get('numero');
 
         $alumnos->save();
     }
@@ -38,6 +40,7 @@ class AlumnoApiController extends Controller
         //
         $alumnos=Alumno::find($id);
         
+        $alumnos->id_matricula=$request->get('id_matricula');
         $alumnos->nombre=$request->get('nombre');
         $alumnos->ap_p=$request->get('ap_p');
         $alumnos->ap_m=$request->get('ap_m');
@@ -48,6 +51,7 @@ class AlumnoApiController extends Controller
         $alumnos->calle_ex=$request->get('calle_ex');
         $alumnos->id_carrera=$request->get('id_carrera');
         $alumnos->id_salon=$request->get('id_salon');
+        //$alumnos->numero=$request->get('numero');
 
         $alumnos->update();
     }

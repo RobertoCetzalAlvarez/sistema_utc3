@@ -35,7 +35,7 @@ new Vue({
 	grupo:'',
 	//fin de variable inicializada para la tabla grupos
 	//inicio variable inicializada para tabla carreras
-	id_car:'21',
+	id_car:'',
 	carrera:'',
 	//fin variable inicializada para tabla carreras
 	agregando:'',
@@ -44,6 +44,8 @@ new Vue({
 	tri:'',
 	cula:'',
 	matricula:'',
+	id_matricula:'',
+
 	//fin descompocicion de la matricula
 	//datos alumno
 	nombre:'',
@@ -139,7 +141,20 @@ new Vue({
 		CerrarModalGrupo:function(){
 			$('#MostrarModalGrupo').modal('hide');
 		},
-		cerrarModalAlumno:function(){
+
+		cerrarModalAlumno:function(){/*modal que cierra para alumnos*/
+		        this.matricula='',
+				this.nombre=''
+				this.ap_p='';
+				this.ap_m='';
+				this.curp='';
+				this.nns='';
+				this.localidad='';
+				this.calle_int='';
+				this.calle_ex='';
+				this.id_car='';
+				this.numero=0;
+
 			$('#modalAlumno').modal('hide');
 		},
 		cerrarModalCarrera:function(){
@@ -155,6 +170,7 @@ new Vue({
 		//Inicio metodos guardar 
 		guardarAlumno:function(){
 			var Alumno={
+				id_matricula:this.matricula,
 				nombre:this.nombre,
 				ap_p:this.ap_p,
 				ap_m:this.ap_m,
@@ -164,8 +180,26 @@ new Vue({
 				calle_int:this.calle_int,
 				calle_ex:this.calle_ex,
 				id_carrera:this.id_car,
-				id_salon:this.id_salon,
+				numero:this.numero,
+				/*id_salon:this.id_salon,*/
 			};
+			this.$http.post(apiAlumno,Alumno).then(function(json){
+				this.obtenerAlumno();
+				this.matricula='',
+				this.nombre=''
+				this.ap_p='';
+				this.ap_m='';
+				this.curp='';
+				this.nns='';
+				this.localidad='';
+				this.calle_int='';
+				this.calle_ex='';
+				this.id_car='';
+				this.numero=0;
+			}).catch(function(json){
+				console.log(json);
+			});
+			$('#modalAlumno').modal('hide');
 		},
 		guardarGrupo:function(){
 
@@ -204,6 +238,27 @@ new Vue({
 		},
 		//fin de metodos guardar
 		//empieza metodos editar
+		editandoAlumno:function(id){
+			this.agregando=false;
+			/*se inicializa el id para 
+			posterior mente se pueda actualizar en el metodo actualizar*/
+			this.id_matricula=id;
+			this.$http.get(apiAlumno + '/' + id).then(function(json){
+				console.log(json);
+				this.matricula=json.data.id_matricula;
+				this.nombre=json.data.nombre;
+				this.ap_p=json.data.ap_p;
+				this.ap_m=json.data.ap_m;
+				this.curp=json.data.curp;
+				this.nns=json.data.nns;
+				this.localidad=json.data.localidad;
+				this.calle_int=json.data.calle_int;
+				this.calle_ex=json.data.calle_ex;
+				this.id_car=json.data.id_carrera;
+				
+			})
+			$('#modalAlumno').modal('show');
+		},
 		editandoGrupo:function(id){
 			this.agregando=false;
 			/*se inicializa el id para 
@@ -238,6 +293,36 @@ new Vue({
 		},
 		//termina metodos editar
 		//empieza metodos actualizar
+		actualizarAlumno:function(){
+			var jsonAlumno = {
+				id_matricula:this.matricula,
+				nombre:this.nombre,
+				ap_p:this.ap_p,
+				ap_m:this.ap_m,
+				curp:this.curp,
+				nns:this.nns,
+				localidad:this.localidad,
+				calle_int:this.calle_int,
+				calle_ex:this.calle_ex,
+				id_carrera:this.id_car,
+				//numero:this.numero,
+			};
+			this.$http.patch(apiAlumno + '/' + this.id_matricula,jsonAlumno).then(function(json){
+				this.obtenerAlumno();
+				this.matricula=json.data.id_matricula;
+				this.nombre=json.data.nombre;
+				this.ap_p=json.data.ap_p;
+				this.ap_m=json.data.ap_m;
+				this.curp=json.data.curp;
+				this.nns=json.data.nns;
+				this.localidad=json.data.localidad;
+				this.calle_int=json.data.calle_int;
+				this.calle_ex=json.data.calle_ex;
+				this.id_car=json.data.id_carrera;
+			})
+			$('#modalAlumno').modal('hide');
+
+		},
 		actualizarGrupo:function(){
 			
 			var jsonGrupo = {
@@ -327,6 +412,16 @@ new Vue({
 				});
 			}
 		},
+		eliminarAlumno:function(id){
+			var confir=confirm('Esta seguro de eliminar la carrera');
+			if(confir){
+				this.$http.delete(apiAlumno + '/' + id).then(function(json){
+					this.obtenerAlumno();
+				}).catch(function(json){
+					console.log(json);
+				});
+			}
+		},
 		//termina metodos eliminar
 		
 	},
@@ -335,6 +430,7 @@ new Vue({
 
 	// INICIO COMPUTED
 	computed:{
+		//obtiene el siguiente numero de alumno
 		obtenerSiguienteNumero() {
 			/* var total=0;
 			for (let i = 0; i < this.Alumnos.length; i++) {
@@ -346,7 +442,8 @@ new Vue({
 			const ultimoNumero = ultimoObjeto ? ultimoObjeto.numero : '0000';
 			const siguienteNumero = parseInt(ultimoNumero) + 1;
 			const numeroCompleto = siguienteNumero.toString().padStart(4, '0');
-			return numeroCompleto;
+			this.numero=numeroCompleto;
+			return this.numero;
 		  },
 		  
 		obtenerDosUltimosNumerosDelAnio() {
