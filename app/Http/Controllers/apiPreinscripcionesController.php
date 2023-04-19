@@ -27,6 +27,21 @@ class apiPreinscripcionesController extends Controller
     public function store(Request $request)
     {
         //
+        $pre=new Preinscripciones();
+        $pre->id=$request->get('id');
+        $pre->nombre=$request->get('nombre');
+        $pre->ap_p=$request->get('ap_p');
+        $pre->ap_m=$request->get('ap_m');
+        $pre->curp=$request->get('curp');
+        $pre->nns=$request->get('nns');
+        $pre->localidad=$request->get('localidad');
+        $pre->calle_int=$request->get('calle_int');
+        $pre->calle_ex=$request->get('calle_ex');
+        $pre->id_carrera=$request->get('id_carrera');
+        $pre->id_salon=$request->get('id_salon');
+        $pre->numero=$request->get('numero');
+
+        $pre->save();
     }
 
     /**
@@ -38,6 +53,7 @@ class apiPreinscripcionesController extends Controller
     public function show($id)
     {
         //
+        return $pre=Preinscripciones::find($id);
     }
 
     /**
@@ -50,6 +66,22 @@ class apiPreinscripcionesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $pre=Preinscripciones::find($id);
+        
+        $pre->id=$request->get('id');
+        $pre->nombre=$request->get('nombre');
+        $pre->ap_p=$request->get('ap_p');
+        $pre->ap_m=$request->get('ap_m');
+        $pre->curp=$request->get('curp');
+        $pre->nns=$request->get('nns');
+        $pre->localidad=$request->get('localidad');
+        $pre->calle_int=$request->get('calle_int');
+        $pre->calle_ex=$request->get('calle_ex');
+        $pre->id_carrera=$request->get('id_carrera');
+        $pre->id_salon=$request->get('id_salon');
+        //$pre->numero=$request->get('numero');
+
+        $pre->update();
     }
 
     /**
