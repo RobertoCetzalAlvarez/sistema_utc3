@@ -26,7 +26,7 @@ Route::get('grupo', function () {
 });
 
 //INICIO DE VISTAS
-Auth::routes();
+//Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
