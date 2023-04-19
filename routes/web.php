@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use App\Models\Alumno;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
