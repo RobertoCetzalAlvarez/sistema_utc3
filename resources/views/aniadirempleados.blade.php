@@ -17,14 +17,7 @@
 			<div class="col-md-12">
 				<div class="card card-warning"> 
 					<div class="card-header">
-						<h3>CRUD EMPLEADOS
-						<button type="button" class="btn btn-warning">	
-						<span class="btn btn-sm btn-primary" @click="mostrarModal()">
-							<i class="fa-solid fa-plus"></i>
-						</span>
-						</h3> 
-						</button>
-
+						<span class="btn btn-primary" @click="mostrarModal()">+ Crear nuevo</span>
 						<div class="col-md-6">
 						<input type="text" placeholder="Escriba el nombre o cargo del personal" class="form-control" v-model="buscar">
 						</div>

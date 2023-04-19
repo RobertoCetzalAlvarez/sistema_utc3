@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use Illuminate\Http\Request;
 
-class AlumnoApiController extends Controller
+class AlumnoFinanzaApiController extends Controller
 {
     public function index()
     {
@@ -40,7 +40,7 @@ class AlumnoApiController extends Controller
         //
         $alumnos=Alumno::find($id);
         
-        //$alumnos->id_matricula=$request->get('id_matricula');
+        $alumnos->id_matricula=$request->get('id_matricula');
         $alumnos->nombre=$request->get('nombre');
         $alumnos->ap_p=$request->get('ap_p');
         $alumnos->ap_m=$request->get('ap_m');

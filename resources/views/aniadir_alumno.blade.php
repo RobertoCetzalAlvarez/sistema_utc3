@@ -9,16 +9,17 @@
 					<div class="card card-warning"> 
 						<div class="card-header">
 							<h3>ALUMNOS</h3>
-              <h1>@{{matricula1}}</h1>
-              <!--<h1>@{{obtenerSiguienteNumero}}</h1>-->
+
+              <h1 hidden="">@{{matricula1}}</h1>
+              <h1 hidden="">@{{obtenerSiguienteNumero}}</h1>
 								<li class="nav-item d-none d-lg-flex">
 									
-									<span class="btn btn-primary" @click="mostrarModalAlumno()">+ Crear nuevo</span>
-									<button class="btn btn-success" @click="MostrarModalGrupo()" type="button" >Grupo</button>
-									<button class="btn btn-info" @click="MostrarModalCarrera()" type="button" >Carrera</button>
+									<span class="btn btn-primary" @click="mostrarModalAlumno()" hidden="">+ Crear nuevo</span>
+									<button class="btn btn-success" @click="MostrarModalGrupo()" type="button" hidden >Grupo</button>
+									<button class="btn btn-info" @click="MostrarModalCarrera()" type="button" hidden>Carrera</button>
 								</li>
 							<div class="col-md-6">
-							<input type="text" placeholder="Escriba el nombre del producto" class="form-control" v-model="buscar2">
+							<input type="text" placeholder="Escriba el nombre del alumno" class="form-control" v-model="buscar2">
 							</div>
 						</div>
 
@@ -36,7 +37,7 @@
                                         <th style="background: #FFFF00">C.INTERIOR</th>
                                         <th style="background: #FFFF00">C.EXTERIOR</th>
                                         <th style="background: #FFFF00">CARRERA</th>
-                                        <th style="background: #FFFF00">SALON</th>
+                                        <th style="background: #FFFF00" hidden="">SALON</th>
                                         <th style="background: #FFFF00">ACCIONES</th>
 
                                     </thead>
@@ -53,7 +54,7 @@
                                             <td>@{{alumno.calle_int}}</td>
                                             <td>@{{alumno.calle_ex}}</td>
                                             <td>@{{alumno.carreras.carrera}}</td>
-                                            <td>@{{alumno.id_salon}}</td>
+                                            <!--<td>@{{alumno.id_salon}}</td>-->
 
                                             <!--<td><img v-bind:src=producto.foto width="50" height="60"></td>-->
                                             <!--<td ><img href="prods/@{{producto.foto}}" alt=""></td>-->
@@ -63,11 +64,11 @@
                                                 <!--.prevent elimina el el comportamiento
                                                 predeterminado de la acción de clic
                                                 y se ejecutará el método tal cual-->
-                                                <button class="btn btn-sm" @click.prevent="mostrareditandoAlumno(alumno.id_matricula)">
+                                                <button class="btn btn-sm" @click.prevent="editandoAlumno(alumno.id_matricula)">
                                                     <i class="fas fa-pen"></i>
                                                 </button>
 
-                                                <button class="btn btn-sm" @click.prevent="eliminarGrupo(grupo.id_grupo)">
+                                                <button class="btn btn-sm" @click.prevent="eliminarAlumno(alumno.id_matricula)">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </td>
@@ -102,16 +103,39 @@
       <div class="modal-body">
         <form>
         	<!--AQUI VA EL CONTENIDO-->
-          
-          <input type="text" class="form-control" placeholder="matricula" v-model="matricula">
+          <h6>Matricula</h6>
+          <input type="text" class="form-control" placeholder="Matricula" v-model="matricula" readonly>
+          <h6>Nombre</h6>
+          <input type="text" class="form-control" placeholder="Nombre" v-model="nombre">
+          <h6>Apellido Paterno</h6>
+          <input type="text" class="form-control" placeholder="Apellido Paterno" v-model="ap_p">
+          <h6>Apellido Materno</h6>
+          <input type="text" class="form-control" placeholder="Apellido Materno" v-model="ap_m">
+          <h6>Curp</h6>
+          <input type="text" class="form-control" placeholder="Curp" v-model="curp">
+          <h6>NNS</h6>
+          <input type="text" class="form-control" placeholder="Numero de Seguridad Social" v-model="nns">
+          <h6>Localidad</h6>
+          <input type="text" class="form-control" placeholder="Localidad" v-model="localidad">
+          <h6>Calle Interior</h6>
+          <input type="text" class="form-control" placeholder="Calle interior" v-model="calle_int">
+          <h6>Calle Exterior</h6>
+          <input type="text" class="form-control" placeholder="Calle Exterior" v-model="calle_ex">
+          <!--<input type="text" class="form-control" placeholder="Salon" v-model="id_salon">-->
+          <!--<input type="text" class="form-control" placeholder="Carrera" v-model="id_car">-->
+          <h6>Elija una carrera</h6>
+          <select name="carrera" v-model="id_car" class="form-control" aria-placeholder="Elije la carrera">
+          <option v-for="carrera in filtroCarrera" v-bind:value="carrera.id"><td>@{{carrera.carrera}}</td></option>
+          </select>
+      
         	
         	<!--AQUI TERMINA EL CONTENIDO-->
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" @click="cerrarModalAlumno()">Cerrar</button>
-        <button type="button" class="btn btn-primary" @click="vender()" v-if="agregando==true">Guardar1</button>
-        <button type="button" class="btn btn-primary" @click="vender()" v-if="agregando==false">Guardar2</button>
+        <button type="button" class="btn btn-primary" @click="guardarAlumno()" v-if="agregando==true">Guardar</button>
+        <button type="button" class="btn btn-primary" @click="actualizarAlumno()" v-if="agregando==false">Guardar</button>
       </div>
     </div>
   </div>

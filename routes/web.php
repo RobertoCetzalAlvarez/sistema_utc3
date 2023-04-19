@@ -1,6 +1,6 @@
 <?php
 
-use GuzzleHttp\Middleware;
+use App\Models\Alumno;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,6 +35,10 @@ Route::get('empleados', function () {
 Route::get('alumnoo', function () {
     return view('aniadir_alumno');
 });
+Route::get('alumno1', function(){
+    return view('finanzas_alumno');
+});
+
 //vistas con permisos
 Route::group(['middleware' => 'auth'], function() {
 
@@ -63,7 +67,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 //Apis
-Route::apiResource('apiEmpleado','App\Http\Controllers\EmpleadosController');
-Route::apiResource('apiGrupo','App\Http\Controllers\GrupoController');
-Route::apiResource('apiAlumno','App\Http\Controllers\AlumnoApiController');
-Route::apiResource('apiCarrera','App\Http\Controllers\CarreraController');
+Route::apiResource('/apiEmpleado','App\Http\Controllers\EmpleadosController');
+Route::apiResource('/apiGrupo','App\Http\Controllers\GrupoController');
+Route::apiResource('/apiAlumno','App\Http\Controllers\AlumnoApiController');
+Route::apiResource('/apiCarrera','App\Http\Controllers\CarreraController');
+Route::apiResource('/apiAlumno1','App\Http\Controllers\AlumnoFinanzaApiController');
+Route::apiResource('/apiPre','App\Http\Controllers\apiPreinscripcionesController');
