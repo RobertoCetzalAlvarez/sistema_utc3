@@ -40,13 +40,31 @@ Route::get('alumno1', function(){
 });
 
 //vistas con permisos
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/users/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
+    Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.delete');
+
+
+    Route::get('/alumno', [App\Http\Controllers\AlumnoController::class, 'index'])->name('alumno');
+    Route::get('/coordinador', [App\Http\Controllers\CoordinadorController::class, 'index'])->name('coordinador');
+    Route::get('/finanzas', [App\Http\Controllers\FinanzasController::class, 'index'])->name('finanzas');
+    Route::get('/profesor', [App\Http\Controllers\ProfesorController::class, 'index'])->name('profesor');
+    Route::get('/serv-esc', [App\Http\Controllers\ServiciosEscolaresController::class, 'index'])->name('serv-esc');
+    Route::get('/tutor', [App\Http\Controllers\TutorController::class, 'index'])->name('tutor');
+
+    Route::resource('posts', App\Http\Controllers\PostController::class);
+
+    Route::resource('permissions', App\Http\Controllers\PermissionController::class);
+    Route::resource('roles', App\Http\Controllers\RoleController::class);
+});
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/alumno', [App\Http\Controllers\AlumnoController::class, 'index'])->name('alumno');
-Route::get('/coordinador', [App\Http\Controllers\CoordinadorController::class, 'index'])->name('coordinador');
-Route::get('/finanzas', [App\Http\Controllers\FinanzasController::class, 'index'])->name('finanzas');
-Route::get('/profesor', [App\Http\Controllers\ProfesorController::class, 'index'])->name('profesor');
-Route::get('/serv-esc', [App\Http\Controllers\ServiciosEscolaresController::class, 'index'])->name('serv-esc');
-Route::get('/tutor', [App\Http\Controllers\TutorController::class, 'index'])->name('tutor');
+
 
 //Apis
 Route::apiResource('/apiEmpleado','App\Http\Controllers\EmpleadosController');

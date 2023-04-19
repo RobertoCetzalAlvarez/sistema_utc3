@@ -2,6 +2,7 @@ function init() {
     var ruta = document.querySelector("[name=route]").value;
     
     var apiAlumno = ruta + '/apiAlumno';
+    var apiProfesor = ruta + '/apiProfesor';
     //var apiAlumno='http://127.0.0.1:8000/apiAlumno'
     
     new Vue({
@@ -16,7 +17,10 @@ function init() {
         el:"#alumnos",
     
         data:{
+            //Inicio de arreglos
             alumnos:[],
+            profesores:[],
+            //Fin de arreglos
             id_matricula:'',
             nombre:'',
             ap_p:'',
@@ -32,18 +36,25 @@ function init() {
     
             cantidad:0,
             precio:0,
+            //Inicio para buscar filtros
             buscar:'',
-    
-    
-    
-    
+            buscar2:'',
+            //Fin para buscar filtros
+            //Inicio de llave primaria
+            id_profesor:'',
+            //Fin de llave primaria 
+            //inicia variable inicializada para la tabla profesores
+            profesores:'',
+            //fin de variable inicializada para la tabla profesores
         },
     
         // AL CREARSE LA PAGINA
         created:function(){
             this.obteneralumnos();
+            this.obtenerprofesores();
         },
     
+        //Inicio metodo obtener
         methods:{
             obteneralumnos:function(){
                 
@@ -54,8 +65,18 @@ function init() {
                     console.log(json);
                 });
             },
+            obtenerprofesores:function(){
+                
+                this.$http.get(apiProfesor).then(function(json){
+                    this.profesores=json.data;
+                    console.log(json.data);
+                }).catch(function(json){
+                    console.log(json);
+                });
+            },
     
-    
+            //fin de metodos obtener
+		    //inicio metodos mostrar modal
             mostrarModal:function(){
                 this.agregando=true;
                 this.nombre='';
