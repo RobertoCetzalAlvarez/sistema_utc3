@@ -148,7 +148,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" @click="CerrarModalGrupo()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -156,14 +156,43 @@
       <div class="modal-body">
         <form>
         	<!--AQUI VA EL CONTENIDO-->
+            <form>
+                <h6>Ingrese el Folio</h6>
+            <input type="text" class="form-control" placeholder="Folio" v-model="folio">
+            <button type="button" class="btn btn-primary" @click="BuscarAspirante()">Buscar</button>
+            </form>
 
+            <h6>Matricula</h6>
+          <input type="text" class="form-control" placeholder="Matricula" v-model="matricula" readonly>
+          <h6>Nombre</h6>
+          <input type="text" class="form-control" placeholder="Nombre" v-model="nombre">
+          <h6>Apellido Paterno</h6>
+          <input type="text" class="form-control" placeholder="Apellido Paterno" v-model="ap_p">
+          <h6>Apellido Materno</h6>
+          <input type="text" class="form-control" placeholder="Apellido Materno" v-model="ap_m">
+          <h6>Curp</h6>
+          <input type="text" class="form-control" placeholder="Curp" v-model="curp">
+          <h6>NNS</h6>
+          <input type="text" class="form-control" placeholder="Numero de Seguridad Social" v-model="nns">
+          <h6>Localidad</h6>
+          <input type="text" class="form-control" placeholder="Localidad" v-model="localidad">
+          <h6>Calle Interior</h6>
+          <input type="text" class="form-control" placeholder="Calle interior" v-model="calle_int">
+          <h6>Calle Exterior</h6>
+          <input type="text" class="form-control" placeholder="Calle Exterior" v-model="calle_ex">
+          <!--<input type="text" class="form-control" placeholder="Salon" v-model="id_salon">-->
+          <!--<input type="text" class="form-control" placeholder="Carrera" v-model="id_car">-->
+          <h6>Elija una carrera</h6>
+          <select name="carrera" v-model="id_car" class="form-control" aria-placeholder="Elije la carrera">
+          <option v-for="carrera in filtroCarrera" v-bind:value="carrera.id"><td>@{{carrera.carrera}}</td></option>
+          </select>
         	
         	<!--AQUI TERMINA EL CONTENIDO-->
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" @click="vender()">Guardar</button>
+        <button type="button" class="btn btn-secondary" @click="CerrarModalGrupo()">Cerrar</button>
+        <button type="button" class="btn btn-primary" @click="guardarAlumno()">Guardar</button>
       </div>
     </div>
   </div>

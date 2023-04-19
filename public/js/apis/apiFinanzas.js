@@ -102,6 +102,19 @@ function init() {
                 $('#modalAlumno').modal('show');
             },
             MostrarModalGrupo:function(){
+                this.matricula='',
+                this.nombre=''
+                this.ap_p='';
+                this.ap_m='';
+                this.curp='';
+                this.nns='';
+                this.localidad='';
+                this.calle_int='';
+                this.calle_ex='';
+                this.id_car='';
+                this.numero=0;
+
+
                 $('#MostrarModalGrupo').modal('show');
             },
             mostrarModalGrupo:function(){
