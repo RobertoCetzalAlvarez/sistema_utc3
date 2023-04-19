@@ -9,16 +9,17 @@
 					<div class="card card-warning"> 
 						<div class="card-header">
 							<h3>ALUMNOS</h3>
-              <!--<h1>@{{matricula1}}</h1>-->
-              <!--<h1>@{{obtenerSiguienteNumero}}</h1>-->
+
+              <h1 hidden="">@{{matricula1}}</h1>
+              <h1 hidden="">@{{obtenerSiguienteNumero}}</h1>
 								<li class="nav-item d-none d-lg-flex">
 									
-									<span class="btn btn-primary" @click="mostrarModalAlumno()">+ Crear nuevo</span>
-									<button class="btn btn-success" @click="MostrarModalGrupo()" type="button" >Grupo</button>
-									<button class="btn btn-info" @click="MostrarModalCarrera()" type="button" >Carrera</button>
+									<span class="btn btn-primary" @click="mostrarModalAlumno()" hidden="">+ Crear nuevo</span>
+									<button class="btn btn-success" @click="MostrarModalGrupo()" type="button" hidden >Grupo</button>
+									<button class="btn btn-info" @click="MostrarModalCarrera()" type="button" hidden>Carrera</button>
 								</li>
 							<div class="col-md-6">
-							<input type="text" placeholder="Escriba el nombre del producto" class="form-control" v-model="buscar2">
+							<input type="text" placeholder="Escriba el nombre del alumno" class="form-control" v-model="buscar2">
 							</div>
 						</div>
 

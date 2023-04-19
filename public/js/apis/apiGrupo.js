@@ -295,7 +295,7 @@ new Vue({
 		//empieza metodos actualizar
 		actualizarAlumno:function(){
 			var jsonAlumno = {
-				id_matricula:this.matricula,
+				//id_matricula:this.matricula,
 				nombre:this.nombre,
 				ap_p:this.ap_p,
 				ap_m:this.ap_m,
@@ -309,7 +309,7 @@ new Vue({
 			};
 			this.$http.patch(apiAlumno + '/' + this.id_matricula,jsonAlumno).then(function(json){
 				this.obtenerAlumno();
-				this.matricula=json.data.id_matricula;
+				//this.matricula=json.data.id_matricula;
 				this.nombre=json.data.nombre;
 				this.ap_p=json.data.ap_p;
 				this.ap_m=json.data.ap_m;
@@ -320,6 +320,7 @@ new Vue({
 				this.calle_ex=json.data.calle_ex;
 				this.id_car=json.data.id_carrera;
 			})
+			swal("Cambio Aplicado","success");
 			$('#modalAlumno').modal('hide');
 
 		},
@@ -471,7 +472,10 @@ new Vue({
         },
 		filtroAlumno:function(){
 			return this.Alumnos.filter((id_matricula)=>{
-				return id_matricula.nombre.toLowerCase().match(this.buscar2.toLowerCase().trim())
+				return id_matricula.nombre.toLowerCase().match(this.buscar2.toLowerCase().trim())||
+				id_matricula.ap_p.toLowerCase().match(this.buscar2.toLowerCase().trim())||
+				id_matricula.ap_m.toLowerCase().match(this.buscar2.toLowerCase().trim())||
+				id_matricula.curp.toLowerCase().match(this.buscar2.toLowerCase().trim())
 			});
 		},
 		//fin computed filtros

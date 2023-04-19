@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Alumno;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,10 @@ Route::get('empleados', function () {
 Route::get('alumnoo', function () {
     return view('aniadir_alumno');
 });
+Route::get('alumno1', function(){
+    return view('finanzas_alumno');
+});
+
 //vistas con permisos
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/alumno', [App\Http\Controllers\AlumnoController::class, 'index'])->name('alumno');
@@ -44,7 +49,8 @@ Route::get('/serv-esc', [App\Http\Controllers\ServiciosEscolaresController::clas
 Route::get('/tutor', [App\Http\Controllers\TutorController::class, 'index'])->name('tutor');
 
 //Apis
-Route::apiResource('apiEmpleado','App\Http\Controllers\EmpleadosController');
-Route::apiResource('apiGrupo','App\Http\Controllers\GrupoController');
-Route::apiResource('apiAlumno','App\Http\Controllers\AlumnoApiController');
-Route::apiResource('apiCarrera','App\Http\Controllers\CarreraController');
+Route::apiResource('/apiEmpleado','App\Http\Controllers\EmpleadosController');
+Route::apiResource('/apiGrupo','App\Http\Controllers\GrupoController');
+Route::apiResource('/apiAlumno','App\Http\Controllers\AlumnoApiController');
+Route::apiResource('/apiCarrera','App\Http\Controllers\CarreraController');
+Route::apiResource('/apiAlumno1','App\Http\Controllers\AlumnoFinanzaApiController');
