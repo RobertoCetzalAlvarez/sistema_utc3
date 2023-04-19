@@ -1,7 +1,7 @@
 function init() {
     var ruta = document.querySelector("[name=route]").value;
     
-    var apiGrupo=ruta + '/apiGrupo';
+    var apiPre=ruta + '/apiPre';
     var apiAlumno =ruta + '/apiAlumno1';
     var apiCarrera=ruta + '/apiCarrera';
     
@@ -22,6 +22,7 @@ function init() {
         Alumnos:[],
         Carreras:[],
             //fin de arreglos
+        folio:'',
             //inicio buscar para los filtros
         buscar:'',
         buscar2:'',
@@ -63,16 +64,16 @@ function init() {
         },
         // AL CREARSE LA PAGINA
         created:function(){
-            this.obtenerGrupo();
+            this.obtenerPreinscripcion();
             this.obtenerAlumno();
             this.obtenerCarrera();
         },
         methods:{
     
             //inicio metodos obtener
-            obtenerGrupo:function(){
+            obtenerPreinscripcion:function(){
                 
-                this.$http.get(apiGrupo).then(function(json){
+                this.$http.get(apiPre).then(function(json){
                     this.grupos=json.data;
                     console.log(json.data);
                 }).catch(function(json){
@@ -237,8 +238,8 @@ function init() {
                 var grupo={ grupo:this.grupo,
                 };
                 
-                this.$http.post(apiGrupo,grupo).then(function(j){
-                    this.obtenerGrupo();
+                this.$http.post(apiPre,grupo).then(function(j){
+                    this.obtenerPreinscripcion();
                     this.grupo='';
     
                     }).catch(function(j){
@@ -269,6 +270,23 @@ function init() {
             },
             //fin de metodos guardar
             //empieza metodos editar
+            BuscarAspirante:function(id){
+                this.$http.get(apiPre + '/' + '0001').then(function(json){
+                    console.log(json);
+                    this.matricula=json.data.id;
+                    this.nombre=json.data.nombre;
+                    this.ap_p=json.data.ap_p;
+                    this.ap_m=json.data.ap_m;
+                    this.curp=json.data.curp;
+                    this.nns=json.data.nns;
+                    this.localidad=json.data.localidad;
+                    this.calle_int=json.data.calle_int;
+                    this.calle_ex=json.data.calle_ex;
+                    this.id_car=json.data.id_carrera;
+                    
+                })
+
+            },
             editandoAlumno:function(id){
                 this.agregando=false;
                 /*se inicializa el id para 
@@ -297,7 +315,7 @@ function init() {
                 this.id_grupo=id;
                 
                 //console.log(this.id_grupo);
-                this.$http.get(apiGrupo + '/' + id).then(function(json){
+                this.$http.get(apiPre + '/' + id).then(function(json){
                     this.grupo=json.data.grupo;
                 });
     
@@ -359,8 +377,8 @@ function init() {
                 var jsonGrupo = {
                     grupo:this.grupo
                 };
-                this.$http.patch(apiGrupo + '/' + this.id_grupo,jsonGrupo).then(function(json){
-                    this.obtenerGrupo();
+                this.$http.patch(apiPre + '/' + this.id_grupo,jsonGrupo).then(function(json){
+                    this.obtenerPreinscripcion();
                     this.grupo=json.data.grupo;
                 })
                 $('#modalGrupo').modal('hide');
@@ -426,8 +444,8 @@ function init() {
     
                 if (confir)
                 {
-                    this.$http.delete(apiGrupo + '/' + id).then(function(json){
-                        this.obtenerGrupo();
+                    this.$http.delete(apiPre + '/' + id).then(function(json){
+                        this.obtenerPreinscripcion();
                     }).catch(function(json){
     
                     });

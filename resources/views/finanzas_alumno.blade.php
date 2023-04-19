@@ -159,7 +159,7 @@
             <form>
                 <h6>Ingrese el Folio</h6>
             <input type="text" class="form-control" placeholder="Folio" v-model="folio">
-            <button type="button" class="btn btn-primary" @click="BuscarAspirante()">Buscar</button>
+            <button type="button" class="btn btn-primary" @click="BuscarAspirante(0001)">Buscar</button>
             </form>
 
             <h6>Matricula</h6>

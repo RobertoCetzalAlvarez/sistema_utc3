@@ -54,3 +54,4 @@ Route::apiResource('/apiGrupo','App\Http\Controllers\GrupoController');
 Route::apiResource('/apiAlumno','App\Http\Controllers\AlumnoApiController');
 Route::apiResource('/apiCarrera','App\Http\Controllers\CarreraController');
 Route::apiResource('/apiAlumno1','App\Http\Controllers\AlumnoFinanzaApiController');
+Route::apiResource('/apiPre','App\Http\Controllers\apiPreinscripcionesController');
