@@ -198,7 +198,7 @@
                                             <!-- INICIO DE LA TABLA -->
                                     <table class="table table-bordered table-striped" >
                                         <thead>
-                                            <th style="background: #FFFF00">ID</th>
+                                            <th style="background: #FFFF00">Familia</th>
                                             <th style="background: #FFFF00">GRUPO</th>
                                             <th style="background: #FFFF00">ACCIONES</th>
 
@@ -253,7 +253,9 @@
                   <form>
                     <!--AQUI VA EL CONTENIDO-->
                     <h1>Carrera</h1>
+                    <h6>Familia</h6>
                     <input type="text" class="form-control" placeholder="id" v-model="id_car"><br>
+                    <h6>Carrera</h6>
                     <input type="text" class="form-control" placeholder="carrera" v-model="carrera">
                     <!--AQUI TERMINA EL CONTENIDO-->
                   </form>
