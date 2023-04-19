@@ -103,15 +103,23 @@
       <div class="modal-body">
         <form>
         	<!--AQUI VA EL CONTENIDO-->
-          
+          <h6>Matricula</h6>
           <input type="text" class="form-control" placeholder="Matricula" v-model="matricula" readonly>
+          <h6>Nombre</h6>
           <input type="text" class="form-control" placeholder="Nombre" v-model="nombre">
+          <h6>Apellido Paterno</h6>
           <input type="text" class="form-control" placeholder="Apellido Paterno" v-model="ap_p">
+          <h6>Apellido Materno</h6>
           <input type="text" class="form-control" placeholder="Apellido Materno" v-model="ap_m">
+          <h6>Curp</h6>
           <input type="text" class="form-control" placeholder="Curp" v-model="curp">
+          <h6>NNS</h6>
           <input type="text" class="form-control" placeholder="Numero de Seguridad Social" v-model="nns">
+          <h6>Localidad</h6>
           <input type="text" class="form-control" placeholder="Localidad" v-model="localidad">
+          <h6>Calle Interior</h6>
           <input type="text" class="form-control" placeholder="Calle interior" v-model="calle_int">
+          <h6>Calle Exterior</h6>
           <input type="text" class="form-control" placeholder="Calle Exterior" v-model="calle_ex">
           <!--<input type="text" class="form-control" placeholder="Salon" v-model="id_salon">-->
           <!--<input type="text" class="form-control" placeholder="Carrera" v-model="id_car">-->
