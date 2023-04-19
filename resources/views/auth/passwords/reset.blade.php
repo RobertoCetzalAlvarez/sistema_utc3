@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main', ['class' => 'off-canvas-sidebar', 'activePage' => 'login', 'title' => __('Universidad Tecnológica del Centro')])
 
 @section('content')
 <div class="container">

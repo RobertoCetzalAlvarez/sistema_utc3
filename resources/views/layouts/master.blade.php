@@ -95,7 +95,7 @@
     <a href="index3.html" class="brand-link">
       <img src="img/UTC1.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">UTC</span>
+      <span class="brand-text font-weight-light"></span>
     </a>
 
 
@@ -136,7 +136,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Reportes
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

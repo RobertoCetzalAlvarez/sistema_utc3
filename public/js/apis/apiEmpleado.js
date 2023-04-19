@@ -2,6 +2,7 @@ function init() {
 var ruta = document.querySelector("[name=route]").value;
 
 var apiEmpleado = ruta + '/apiEmpleado';
+var apiProfesor = ruta + '/apiProfesor';
 //var apiEmpleado='http://127.0.0.1:8000/apiEmpleado'
 
 new Vue({
@@ -16,7 +17,10 @@ new Vue({
 	el:"#empleados",
 
 	data:{
+		//Inicio de arreglos
 		empleados:[],
+		profesores:[],
+		//Fin de arreglos
 		num_empleado:'',
 		nombre:'',
 		ap_p:'',
@@ -25,8 +29,16 @@ new Vue({
 
 		cantidad:0,
 		precio:0,
+		//Inicio para buscar filtros
 		buscar:'',
-
+		buscar2:'',
+		//Fin para buscar filtros
+		//Inicio de llave primaria
+		id_profesor:'',
+		//Fin de llave primaria 
+		//inicia variable inicializada para la tabla profesores
+		profesores:'',
+		//fin de variable inicializada para la tabla profesores
 
 
 
@@ -35,6 +47,7 @@ new Vue({
 	// AL CREARSE LA PAGINA
 	created:function(){
 		this.obtenerEmpleados();
+		this.obtenerprofesores();
 	},
 
 	methods:{
@@ -43,6 +56,15 @@ new Vue({
 			
 			this.$http.get(apiEmpleado).then(function(json){
 				this.empleados=json.data;
+				console.log(json.data);
+			}).catch(function(json){
+				console.log(json);
+			});
+		},
+		obtenerprofesores:function(){
+                
+			this.$http.get(apiProfesor).then(function(json){
+				this.profesores=json.data;
 				console.log(json.data);
 			}).catch(function(json){
 				console.log(json);

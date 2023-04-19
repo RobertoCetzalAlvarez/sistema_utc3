@@ -14,12 +14,12 @@ class Carrera extends Model
     protected $primaryKey='id';
     //se define como verdadero que 
     //es auto incrementable la llave primaria
-    public $incrementing=false;
+    public $incrementing=true;
     //se define si se va a usar el tiempo 
     public $timestamps=false;
     //se declara los componentes de la tabla 
     protected $fillable=[
-        'id',
+
         'carrera',
         
     ];
